@@ -6,3 +6,7 @@ mongoose.connect(process.env.MONGODB_URL, {
     useFindAndModify: true,
     useUnifiedTopology: true
 })
+
+mongoose.connection.on("connected",()=>{
+    console.log("Mongo Conntected To Remote Atlas")
+})
