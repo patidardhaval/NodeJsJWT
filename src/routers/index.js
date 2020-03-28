@@ -1,7 +1,7 @@
 const express = require('express')
 const User = require('../models/User')
-const auth = require('../middleware/auth')
 const Product = require('../models/Product')
+const auth = require('../middleware/auth')
 
 const router = express.Router()
 
@@ -64,7 +64,7 @@ router.post('/users/me/logoutall', auth, async (req, res) => {
 
 /* product routes */
 
-router.post('/products', async (req, res) => {
+router.post('/product', async (req, res) => {
     
     const products = new Product(req.body);
     try {
