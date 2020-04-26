@@ -22,11 +22,14 @@ router.post('/users/login', async (req, res) => {
     try {
         const { email, password } = req.body
         const user = await User.findByCredentials(email, password)
+        let success = true;
         if (!user) {
+            success = false;
             return res.status(401).send({ error: 'Login failed! Check authentication credentials' })
         }
         const token = await user.generateAuthToken()
-        res.send({ user, token })
+        
+        res.send({ user, token,success })
     } catch (error) {
         res.status(400).send(error)
     }
@@ -76,7 +79,7 @@ router.post('/product', async (req, res) => {
 
 })
 
-router.get('/product', async (req, res) => {
+router.get('/product', auth,async (req, res) => {
     try {
         const product = await Product.find()
         if (!product) {
@@ -89,7 +92,7 @@ router.get('/product', async (req, res) => {
 
 })
 
-router.get('/product/:id', async (req, res) => {
+router.get('/product/:id',auth, async (req, res) => {
     try {
         const product = await Product.findById(req.params.id)
         if (!product) {
@@ -102,20 +105,24 @@ router.get('/product/:id', async (req, res) => {
 
 })
 
-router.delete('/product/:id', async (req, res) => {
+router.delete('/product/:id',auth, async (req, res) => {
     try {
         const product = await Product.findByIdAndRemove(req.params.id)
+        let message = "Product Deleted";
+        let success = true;
         if (!product) {
-            return res.status(404).send({ error: 'Product Not Found' })
+            message = "Product Not Found";
+            return res.status(404).send({ error: message })
         }
-        res.send({ product, product })
+        res.send({ product, product,success,message })
     } catch (error) {
         res.status(400).send(error)
     }
 
 })
 
-router.put('/product/:id', async (req, res) => {
+router.put('/product/:id',auth, async (req, res) => {
+    
     try {
         const product = await Product.findByIdAndUpdate(req.params.id,req.body)
         if (!product) {
