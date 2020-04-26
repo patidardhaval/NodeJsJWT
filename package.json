@@ -18,5 +18,14 @@
   "devDependencies": {
     "env-cmd": "^9.0.3",
     "nodemon": "^1.19.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patidardhaval/NodeJsJWT.git"
+  },
+  "bugs": {
+    "url": "https://github.com/patidardhaval/NodeJsJWT/issues"
+  },
+  "homepage": "https://github.com/patidardhaval/NodeJsJWT#readme",
+  "description": ""
 }
