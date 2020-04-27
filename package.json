@@ -1,31 +1,22 @@
 {
-  "name": "user-registration-api",
+  "name": "demo",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "env-cmd -f ./.env nodemon src/app.js"
-  },
-  "author": "Frank Atukunda",
-  "license": "MIT",
+  "description": "",
+  "main": "app.js",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.5.6",
     "mongoose": "^5.9.10",
-    "validator": "^11.0.0"
+    "validator": "^11.1.0"
   },
-  "devDependencies": {
-    "env-cmd": "^9.0.3",
-    "nodemon": "^1.19.4"
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/patidardhaval/NodeJsJWT.git"
-  },
-  "bugs": {
-    "url": "https://github.com/patidardhaval/NodeJsJWT/issues"
-  },
-  "homepage": "https://github.com/patidardhaval/NodeJsJWT#readme",
-  "description": ""
+  "author": "",
+  "license": "ISC"
 }
