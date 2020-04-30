@@ -10,17 +10,23 @@ const auth = async (req, res, next) => {
             if (err) {
                 return res.json({
                     success: false,
-                    message: 'Token is not valid'
+                    message: 'Token is not valid error'
                 });
             } else {
                 req.decoded = decoded;
+                if(decoded.ip!==req.ip){
+                    return res.json({
+                        success: false,
+                        message: 'Token is not valid.'
+                    }); 
+                }
                 next();
             }
         });
     } else {
         return res.json({
             success: false,
-            message: 'Auth token is not supplied'
+            message: 'Token is not supplied'
         });
     }
 }

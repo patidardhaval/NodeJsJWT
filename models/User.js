@@ -26,6 +26,10 @@ const userSchema = mongoose.Schema({
         required: true,
         minLength: 7
     },
+    ip: {
+        type: String,
+        minLength: 7
+    },
     tokens: [{
         token: {
             type: String,
@@ -41,11 +45,12 @@ userSchema.pre('save', async function(next) {
     }
     next()
 })
-userSchema.methods.generateAuthToken = async function() {
+userSchema.methods.generateAuthToken = async function(req) {
     // Generate an auth token for the user
     const user = this
     const token = jwt.sign({
-        _id: user._id
+        _id: user._id,
+        ip : req.ip
     }, process.env.JWT_KEY, {
         expiresIn: "10h"
     })
